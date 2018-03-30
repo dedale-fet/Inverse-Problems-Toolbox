@@ -41,3 +41,4 @@
 # __license__ = "CeCill"
 
 import RestoreSn
+__all__ = ["RestoreSn"]

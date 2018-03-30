@@ -42,3 +42,4 @@
 
 import ManiStarletSn
 import ManiStarletOB
+__all__ = ["ManiStarletSn","ManiStarletOB"]

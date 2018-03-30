@@ -15,7 +15,6 @@ ExternalProject_Add(restoreManifold
     SOURCE_DIR  ${CMAKE_SOURCE_DIR}/RestoreManifold
     BINARY_DIR  ${CMAKE_SOURCE_DIR}/RestoreManifold/build
     INSTALL_DIR ${CMAKE_SOURCE_DIR}/install
-    INSTALL_COMMAND ""
     CMAKE_ARGS  -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
                 -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
                 -DCMAKE_MODULE_PATH=${CMAKE_MODULE_PATH}

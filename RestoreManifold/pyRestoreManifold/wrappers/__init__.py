@@ -40,4 +40,5 @@
 # __copyright__ = "(c) 2017 CEA"
 # __license__ = "CeCill"
 
-import ManiMR
+#import ManiMR
+from ManiMR import *
