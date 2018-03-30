@@ -18,8 +18,9 @@ find_package(PythonLibsNew REQUIRED)
 find_package(OpenMP)
 
 message( STATUS "C COMPILER=${CMAKE_C_COMPILER}" )
-message( STATUS "OpenMP=${OpenMP_CXX_FOUND}" )
-message( STATUS "OpenMP_LIBs=${OpenMP_CXX_LIBRARIES}" )
+message( STATUS "OpenMP FOUND =${OpenMP_CXX_FOUND}" )
+message( STATUS "OpenMP LIBS=${OpenMP_CXX_LIBRARIES}" )
+message( STATUS "OpenMP FLAGS=${OpenMP_CXX_FLAGS}" )
 
 pkg_check_modules(GSL REQUIRED gsl)
 pkg_check_modules(CFITSIO REQUIRED cfitsio)
@@ -63,8 +64,7 @@ link_directories(${BoostNumpy_LIBRARY_DIRS} ${GSL_LIBRARY_DIRS} ${CFITSIO_LIBRAR
 #  set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -fno-common -fPIC -fopenmp")
 #endif()
 
-set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -fno-common -fPIC ${OpenMP_CXX_LIBRARIES}")
-#-DRW_PYTHON_INTERFACE -F/Library/Frameworks -arch x86_64")
+set(CMAKE_CXX_FLAGS "-O3 -fomit-frame-pointer -fno-common -fPIC ${OpenMP_CXX_FLAGS}")
 
 # Build the tools module
 add_library(ManiMR SHARED sparse2d/cxx/ManiMR.cpp sparse2d/cxx/starlet2d.cpp sparse2d/cxx/MRM2d.cpp)
