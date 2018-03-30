@@ -1,8 +1,8 @@
 # -\*- coding: utf-8 -\*-
 
 #
-# __init__.py - This file is part of pyRestoreManifold.
-# This module defines transforms on manifolds.
+# __init__.py - This file is part of pygmca.
+# The pyStarlet package performs starlet decomposition on Sn using a direct C++ wrapper.
 # Copyright 2017/2018 CEA
 # Contributor : J.Bobin
 # Created on March, 2018, last modified on March, 2018
@@ -37,8 +37,7 @@
 # __version__ = "1.0"
 # __author__ = "Jerome Bobin"
 # __url__ = "http://www.cosmostat.org/RestoreManifold.html"
-# __copyright__ = "(c) 2017 CEA"
+# __copyright__ = "(c) 2017/2018 CEA"
 # __license__ = "CeCill"
 
-import ManiStarletSn
-import ManiStarletOB
+import pyStarlet

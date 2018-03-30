@@ -1,11 +1,11 @@
 # -\*- coding: utf-8 -\*-
 
 #
-# __init__.py - This file is part of pygmca.
-# The pygmca package aims at performing non-negative matrix factorization.
-# Copyright 2014 CEA
-# Contributor : J.Bobin, C.Chenot, J.Rapin
-# Created on December 15, 2017, last modified on November 28, 2017
+# __init__.py - This file is part of pyRestoreManifold.
+# This module defines restoration algorithm on manifolds.
+# Copyright 2017/2018 CEA
+# Contributor : J.Bobin
+# Created on March, 2018, last modified on March, 2018
 #
 # This software is governed by the CeCILL  license under French law and
 # abiding by the rules of distribution of free software.  You can  use,

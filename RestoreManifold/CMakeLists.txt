@@ -5,20 +5,20 @@ include(FindPkgConfig)
 
 project(restoreManifold)
 
-message(STATUS "restoreManif:CSD=${CMAKE_SOURCE_DIR}" )
+find_package(PythonInterp REQUIRED)
 
 ExternalProject_Add(ManiMRCxx
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/cxxRestoreManifold            # Source dir to be used for build
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/cxxRestoreManifold
     CMAKE_ARGS    -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
                   -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
                   -DCMAKE_MODULE_PATH=${CMAKE_MODULE_PATH}
+                  -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
     BINARY_DIR  ${CMAKE_SOURCE_DIR}/cxxRestoreManifold/build
 )
 
 #
 # Install python libraries
 #
-#INSTALL(TARGETS pytools_pisap DESTINATION ../../lib/python2.7/site-packages)
-#INSTALL(TARGETS pysparse2d_pisap DESTINATION ../../lib/python2.7/site-packages)
-#add_custom_target(install_python ALL python setup.py install --prefix=${PROJECT_SOURCE_DIR}/../..
-#    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/python)
+add_custom_target(install_python ALL ${PYTHON_EXECUTABLE} setup.py install
+    --prefix=${CMAKE_INSTALL_PREFIX} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+add_dependencies(install_python ManiMRCxx)
