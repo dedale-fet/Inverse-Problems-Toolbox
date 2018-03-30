@@ -8,7 +8,8 @@ list(APPEND CMAKE_MODULE_PATH  "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 project(DedaleToolbox)
 
-message(STATUS "DedaleToolbox:CSD=${CMAKE_SOURCE_DIR}" )
+find_package(PythonInterp 2.7 REQUIRED)
+
 
 ExternalProject_Add(restoreManifold
     SOURCE_DIR  ${CMAKE_SOURCE_DIR}/RestoreManifold

@@ -5,7 +5,7 @@ include(FindPkgConfig)
 
 project(restoreManifold)
 
-find_package(PythonInterp REQUIRED)
+find_package(PythonInterp 2.7 REQUIRED)
 
 ExternalProject_Add(ManiMRCxx
     SOURCE_DIR  ${CMAKE_SOURCE_DIR}/cxxRestoreManifold
