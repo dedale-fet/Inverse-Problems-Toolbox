@@ -41,7 +41,9 @@
 
 #include <boost/python.hpp>
 #include <boost/numpy.hpp>
+#ifdef _OPENMP
 #include "omp.h"
+#endif
 #include "NumPyArrayData.h"
 #include <cmath>
 #include <iostream>
@@ -75,7 +77,9 @@ public:
     NumPyArrayData<double> Out_data(Out);
 
     int x;
+    #ifdef _OPENMP
     #pragma omp parallel for shared(X1_data,X2_data,Out_data, x)
+    #endif
     for (x=0; x < Nx; x++){
 
         double *pt_X1 = (double *) malloc(sizeof(double)*Nz);
@@ -118,7 +122,9 @@ public:
     NumPyArrayData<double> Out_data(Out);
 
     int x;
+    #ifdef _OPENMP
     #pragma omp parallel for shared(X1_data,G_data,Out_data, x)
+    #endif
     for (x=0; x < Nx; x++){
 
         double *pt_X1 = (double *) malloc(sizeof(double)*Nz);
@@ -186,7 +192,9 @@ public:
 
   		// Filtering all columns
 
+        #ifdef _OPENMP
   		#pragma omp parallel for shared(pt_In,pt_App, F_data, yl,scale)
+        #endif
       	for (yl=0;yl<Ny;yl++){
 
       		// Define useful variables
@@ -225,8 +233,9 @@ public:
       	}
 
       	// Filtering all the lines (BEWARE Nx = Ny !!!!!!)
-
+        #ifdef _OPENMP
       	#pragma omp parallel for shared(pt_In,pt_App, xl,scale)
+        #endif
       	for (xl=0; xl < Nx; xl++){
           double *pt_F = (double *) malloc(sizeof(double)*Lh);
       		double *pt_Row = (double *) malloc(sizeof(double)*Nx*Nz);
@@ -265,8 +274,9 @@ public:
 
       	// COMPUTE THE DISCREPANCY WITH THE APPROXIMATION IN THE TANGENT PLANE
       	for (int y=0;y<Ny;y++){
-
-          #pragma omp parallel for shared(Out_data,pt_In,pt_App,y,scale)
+            #ifdef _OPENMP
+            #pragma omp parallel for shared(Out_data,pt_In,pt_App,y,scale)
+            #endif
       		for (int x=0;x<Nx;x++){
 
                 double *pt_Temp1 = (double *) malloc(sizeof(double)*Nz);
@@ -348,7 +358,9 @@ public:
 
   		// Filtering all columns
 
+        #ifdef _OPENMP
   		#pragma omp parallel for shared(pt_In,pt_App,yl,scale)
+        #endif
       	for (yl=0;yl<Ny;yl++){
       		for (int x=0; x < Nx; x++){
 
@@ -441,7 +453,9 @@ public:
 
       // Filtering all columns
 
-      #pragma omp parallel for shared(pt_In,pt_Ref,pt_App,pt_App_Ref, pt_F, yl,scale)
+        #ifdef _OPENMP
+        #pragma omp parallel for shared(pt_In,pt_Ref,pt_App,pt_App_Ref, pt_F, yl,scale)
+        #endif
         for (yl=0;yl<Ny;yl++){
 
           // DEFINE USEFUL VARIABLES
@@ -487,7 +501,9 @@ public:
 
         // Filtering all the lines (BEWARE Nx = Ny !!!!!!)
 
+        #ifdef _OPENMP
         #pragma omp parallel for shared(pt_In,pt_Ref,pt_App,pt_App_Ref, pt_F, xl,scale)
+        #endif
         for (xl=0; xl < Nx; xl++){
 
           double *pt_Row = (double *) malloc(sizeof(double)*Nx*Nz);

@@ -41,7 +41,9 @@
 
 #include <boost/python.hpp>
 #include <boost/numpy.hpp>
+#ifdef _OPENMP
 #include "omp.h"
+#endif
 #include "NumPyArrayData.h"
 #include <cmath>
 
@@ -334,7 +336,9 @@ public:
 
 		// Filtering all columns
 
+        #ifdef _OPENMP
 		#pragma omp parallel for shared(pt_In,pt_App, pt_F, yl,scale)
+        #endif
     	for (yl=0;yl<Ny;yl++){
 
     		// DEFINE USEFUL VARIABLES
@@ -379,7 +383,9 @@ public:
 
     	// Filtering all the lines (BEWARE Nx = Ny !!!!!!)
 
+        #ifdef _OPENMP
     	#pragma omp parallel for shared(pt_In,pt_App, pt_F, xl,scale)
+        #endif
     	for (xl=0; xl < Nx; xl++){
 
     		double *pt_Row = (double *) malloc(sizeof(double)*Nx*Nz);
@@ -509,7 +515,9 @@ public:
 
   		// Filtering all columns
 
+        #ifdef _OPENMP
   		#pragma omp parallel for shared(pt_In,pt_Ref,pt_App,pt_F,yl,scale)
+        #endif
       	for (yl=0;yl<Ny;yl++){
 
       		// DEFINE USEFUL VARIABLES
@@ -558,7 +566,9 @@ public:
 
       	// Filtering all the lines (BEWARE Nx = Ny !!!!!!)
 
+        #ifdef _OPENMP
       	#pragma omp parallel for shared(pt_In,pt_Ref,pt_App, pt_F, xl,scale)
+        #endif
       	for (xl=0; xl < Nx; xl++){
 
       		double *pt_Row = (double *) malloc(sizeof(double)*Nx*Nz);
@@ -691,7 +701,9 @@ public:
 
         // Filtering all columns
 
+        #ifdef _OPENMP
         #pragma omp parallel for shared(pt_In,pt_Ref,pt_App,pt_App_Ref, pt_F, yl,scale)
+        #endif
           for (yl=0;yl<Ny;yl++){
 
             // DEFINE USEFUL VARIABLES
@@ -743,7 +755,9 @@ public:
 
           // Filtering all the lines (BEWARE Nx = Ny !!!!!!)
 
+          #ifdef _OPENMP
           #pragma omp parallel for shared(pt_In,pt_Ref,pt_App,pt_App_Ref, pt_F, xl,scale)
+          #endif
           for (xl=0; xl < Nx; xl++){
 
             double *pt_Row = (double *) malloc(sizeof(double)*Nx*Nz);
@@ -878,7 +892,9 @@ public:
 
 		// Filtering all columns
 
+        #ifdef _OPENMP
 		#pragma omp parallel for shared(pt_In,pt_App,yl,scale)
+        #endif
     	for (yl=0;yl<Ny;yl++){
     		for (int x=0; x < Nx; x++){
 
@@ -960,7 +976,9 @@ public:
 
   		// Filtering all columns
 
+        #ifdef _OPENMP
   		#pragma omp parallel for shared(pt_In,pt_App,yl,scale)
+        #endif
       	for (yl=0;yl<Ny;yl++){
       		for (int x=0; x < Nx; x++){
 
@@ -1084,8 +1102,9 @@ public:
 //
 //
 //	int k;
-//
-//#pragma omp parallel for shared(In_data,Out_data, pt_F, k)
+//   #ifdef _OPENMP
+//   #pragma omp parallel for shared(In_data,Out_data, pt_F, k)
+//   #endif
 //	for (k =0; k< Nz; k++){
 //
 //	    double *pt_In = (double *) malloc(sizeof(double)*Nx*Ny);
@@ -1180,8 +1199,9 @@ public:
 //        NumPyArrayData<double> Out_data(Out);
 //
 //	int k;
-//
-//#pragma omp parallel for shared(In_data,Out_data)
+//      #ifdef _OPENMP
+//      #pragma omp parallel for shared(In_data,Out_data)
+//      #endif
 //        for (k =0; k< Nz; k++){
 //
 //	  double *pt_WT = (double *) malloc (sizeof(double)*Nx*Ny*J);
