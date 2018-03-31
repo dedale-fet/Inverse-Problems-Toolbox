@@ -12,7 +12,7 @@ import numpy as np
 from copy import deepcopy as dp
 
 # Import wrappers
-import pyRestoreManifold.wrappers.ManiMR as mmr
+import pyRestoreManifold.wrappers as mmr
 from pyRestoreManifold.utils import ManiUtils as mu
 
 
