@@ -39,5 +39,5 @@
 # __url__ = "http://www.cosmostat.org/RestoreManifold.html"
 # __copyright__ = "(c) 2017/2018 CEA"
 # __license__ = "CeCill"
-
-import pyStarlet
+from starlet2d import *
+from pyStarlet import *

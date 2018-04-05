@@ -73,11 +73,11 @@ target_link_libraries(ManiMR ${BoostNumpy_LIBRARIES} ${Boost_LIBRARIES} ${GSL_LI
 set_target_properties(ManiMR PROPERTIES SUFFIX .so)
 set_target_properties(ManiMR PROPERTIES PREFIX "")
 
-add_library(sparse2d_Sn SHARED sparse2d/cxx/sparse2d.cpp sparse2d/cxx/starlet2d.cpp)
-add_dependencies(sparse2d_Sn BoostNumpy)
-target_link_libraries(sparse2d_Sn ${BoostNumpy_LIBRARIES} ${Boost_LIBRARIES} ${GSL_LIBRARIES} ${PYTHON_LIBRARIES})
-set_target_properties(sparse2d_Sn PROPERTIES SUFFIX .so)
-set_target_properties(sparse2d_Sn PROPERTIES PREFIX "")
+add_library(starlet2d SHARED sparse2d/cxx/sparse2d.cpp sparse2d/cxx/starlet2d.cpp)
+add_dependencies(starlet2d BoostNumpy)
+target_link_libraries(starlet2d ${BoostNumpy_LIBRARIES} ${Boost_LIBRARIES} ${GSL_LIBRARIES} ${PYTHON_LIBRARIES})
+set_target_properties(starlet2d PROPERTIES SUFFIX .so)
+set_target_properties(starlet2d PROPERTIES PREFIX "")
 
 install(TARGETS ManiMR DESTINATION ${CMAKE_SOURCE_DIR}/../pyRestoreManifold/wrappers)
-install(TARGETS sparse2d_Sn DESTINATION ${CMAKE_SOURCE_DIR}/../pyStarlet)
+install(TARGETS starlet2d DESTINATION ${CMAKE_SOURCE_DIR}/../pyStarlet)

@@ -9,6 +9,7 @@ list(APPEND CMAKE_MODULE_PATH  "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 project(DedaleToolbox)
 
 find_package(PythonInterp 2.7 REQUIRED)
+find_package(PythonLibsNew REQUIRED)
 
 
 ExternalProject_Add(restoreManifold

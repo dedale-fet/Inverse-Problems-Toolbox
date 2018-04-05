@@ -14,7 +14,7 @@ from copy import deepcopy as dp
 # Import wrappers
 import pyRestoreManifold.wrappers as mmr
 from pyRestoreManifold.utils import ManiUtils as mu
-
+import pyStarlet as ps
 
 def Forward2D_Sn(X,J=2,h=[0.0625,0.25,0.375,0.25,0.0625]):
 
@@ -74,7 +74,7 @@ def Forward2D_Rn(X,h = [0.0625,0.25,0.375,0.25,0.0625],J = 1):
     nX = np.shape(X)
     Lh = np.size(h)
 
-    W = mmr.Starlet2D(nX[1],nX[2],nX[0],J,Lh).forward_omp(np.real(X),np.array(h))
+    W = ps.Starlet2D(nX[1],nX[2],nX[0],J,Lh).forward2d_omp(np.real(X),np.array(h))
 
     return W
 
@@ -87,7 +87,7 @@ def Backward2D_Rn(W,h = [0.0625,0.25,0.375,0.25,0.0625]):
     nX = np.shape(W)
     Lh = np.size(h)
 
-    rec = mmr.Starlet2D(nX[1],nX[2],nX[0],nX[3]-1,Lh).backward_omp(np.real(W))
+    rec = ps.Starlet2D(nX[1],nX[2],nX[0],nX[3]-1,Lh).backward2d_omp(np.real(W))
 
     return rec
 
@@ -100,7 +100,7 @@ def Forward1D_Rn(X,h = [0.0625,0.25,0.375,0.25,0.0625],J = 1):
     nX = np.shape(X)
     Lh = np.size(h)
 
-    W = mmr.Starlet2D(nX[1],1,nX[0],J,Lh).forward1d_omp(np.real(X),np.array(h))
+    W = ps.Starlet2D(nX[1],1,nX[0],J,Lh).forward1d_omp(np.real(X),np.array(h))
 
     return W
 
@@ -123,6 +123,6 @@ def adjoint1d(W,h = [0.0625,0.25,0.375,0.25,0.0625]):
     nX = np.shape(W)
     Lh = np.size(h)
 
-    W = mmr.Starlet2D(nX[1],1,nX[0],nX[2]-1,Lh).adjoint1d(np.real(W),np.array(h))
+    W = ps.Starlet2D(nX[1],1,nX[0],nX[2]-1,Lh).adjoint1d(np.real(W),np.array(h))
 
     return W

@@ -24,4 +24,4 @@ add_custom_target(install_python ALL ${PYTHON_EXECUTABLE} setup.py install
 add_dependencies(install_python ManiMRCxx)
 
 install(FILES pyRestoreManifold/wrappers/ManiMR.so DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/python2.7/site-packages/pyRestoreManifold/wrappers)
-install(FILES pyStarlet/sparse2d_Sn.so DESTINATION ${CMAKE_INSTALL_PREFIX}/lib//python2.7/site-packages/pyStarlet)
+install(FILES pyStarlet/starlet2d.so DESTINATION ${CMAKE_INSTALL_PREFIX}/lib//python2.7/site-packages/pyStarlet)

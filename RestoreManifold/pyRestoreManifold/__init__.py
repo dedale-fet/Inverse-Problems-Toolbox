@@ -40,9 +40,9 @@
 # __copyright__ = "(c) 2017 CEA"
 # __license__ = "CeCill"
 
+import wrappers
+import utils
 import trans
 import restore
-import utils
-import wrappers
 
-__all__ = ["trans","restore","utils","wrappers"]
+__all__ = ["wrappers","utils","trans","restore"]

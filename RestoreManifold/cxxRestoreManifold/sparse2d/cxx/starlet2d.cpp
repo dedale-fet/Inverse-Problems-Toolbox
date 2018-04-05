@@ -64,7 +64,7 @@ void Starlet2D::filter_1d(double* xin,double* xout,int N,double* h,int scale)
   for (i=0;i<N;i++)
     {
       val = 0;
-      for (j=0;j<Lh;j++) 
+      for (j=0;j<Lh;j++)
         {
 	  Lindix = i + pow(2,scale)*(j - m2);
 	  Tindix = Lindix;
@@ -99,7 +99,7 @@ void Starlet2D::transform(double* In, double* Wt_Out, double* CR_Out, double* xI
 	    }
 
 	  filter_1d(yIn,yOut,Ny,h,j);
-	  
+
 	  for (k=0;k<Ny;k++)
 	    {
 	      CR_Out[i + k*Nx] = yOut[k];
@@ -115,7 +115,7 @@ void Starlet2D::transform(double* In, double* Wt_Out, double* CR_Out, double* xI
 	    }
 
 	  filter_1d(xIn,xOut,Nx,h,j);
-	  
+
 	  for (k=0;k<Nx;k++)
 	    {
 	      CR_Out[k+i*Nx] = xOut[k];
@@ -151,12 +151,12 @@ void Starlet2D::transform1d(double* In, double* Wt_Out, double* CR_Out, double* 
 	    }
 
 	  filter_1d(xIn,xOut,Nx,h,j);
-	  
+
 	  for (k=0;k<Nx;k++)
 	    {
 	      CR_Out[k] = xOut[k];
 	    }
-	
+
       // Updating the wavelet coefficients
 
 	  for (k=0;k<Nx;k++)
@@ -190,37 +190,33 @@ void Starlet2D::adjoint1d(double* CR, double* WT, double* xIn,  double* xOut,  d
 {
   int j=0;
   int k=0;
-  
-  
-  for (j=J-1;j>-1;j--) 
+
+
+  for (j=J-1;j>-1;j--)
    {
-     
+
 	 // Filter the wt
-	 
+
 	 for (k=0;k<Nx;k++)
   	  {
 	      xTemp[k] = WT[k+j*Nx];
       }
-	 
+
 	 filter_1d(xTemp,xOut,Nx,h,j);
-	  
+
 	  for (k=0;k<Nx;k++)
 	    {
 	      xTemp[k] -= xOut[k];
 	    }
-	    
+
 	  // Filter the coarse scale
 
 	  filter_1d(CR,xOut,Nx,h,j);
-	  
+
 	  for (k=0;k<Nx;k++)
 	    {
 	      CR[k] = xOut[k] + xTemp[k];
-	    }      
+	    }
     }
-    
+
 }
-
-
-
-
