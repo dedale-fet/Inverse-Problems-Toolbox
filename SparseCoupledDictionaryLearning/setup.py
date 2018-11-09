@@ -6,7 +6,8 @@ setup(
       name='pySparseCoupledDL',
       packages=['SparseCoupledDL'],
       version='1.0',
-      description='pyRestoreManifold including C++ wrappers',
+      license="Copyright (c) 2017-2018, Signal Processing Lab (SPL), Institute of Computer Science (ICS), FORTH, Greece.",
+      description='Coupled Dictionary Learning using sparsity',
       author='Konstantina Fotiadou, Greg Tsagkatakis, Nancy Panousopoulou (encapsulation by Florent Sureau)',
       author_email='kfot@ics.forth.gr',
       long_description=open('README.md').read(),
@@ -14,6 +15,7 @@ setup(
       classifiers = [
         "Programming Language :: Python",
         "Development Status :: 4 - Beta",
+	"License :: Copyright (c) 2017-2018, Signal Processing Lab (SPL), Institute of Computer Science (ICS), FORTH, Greece.",
         "Operating System :: POSIX",
         "Operating System :: MacOS",
         ],

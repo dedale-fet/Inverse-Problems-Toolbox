@@ -21,15 +21,17 @@ def Filter(X,J=2,th=0,L0=0):
 
     w = Forward(X,J=J)
     nW = np.shape(w)
-    n_channels = nW[0]-1
+    #n_channels = nW[0]-1
+    n_channels=nW[0]
+    
     npix = nW[1]
 
     for r in range(J):
-        c = w[n_channels,:,:,r]
+        c = w[0:n_channels,:,:,r]
         if L0:
-            c = c*(c - th > 0)
+            c = c*(np.abs(c)> th)
         else:
-            c = (c - th)*(c - th > 0)
-        w[n_channels,:,:,r] = c
+            c = (c-np.sign(c)*th)*(np.abs(c)> th)
+        w[0:n_channels,:,:,r] = c
 
     return Backward(w)
