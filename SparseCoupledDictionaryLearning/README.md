@@ -101,7 +101,7 @@ This library considers the following optional input parameters:
 The code runs at a terminal (not in a Python session):
 
 ```bash
-$ python SparseCoupledDictionaryTraining.py --inputhigh INPUT_HR.csv --inputlow INPUT_LR.csv --dictsize DICTSIZE --imageN IMG --bands_h BANDS_H --bands_l BANDS_L --n_iter N --window W
+$ python SparseCoupledDL/SparseCoupledDictionaryTraining.py --inputhigh INPUT_HR.csv --inputlow INPUT_LR.csv --dictsize DICTSIZE --imageN IMG --bands_h BANDS_H --bands_l BANDS_L --n_iter N --window W
 ```
 
 Where:
@@ -125,7 +125,7 @@ The corresponding csv files are available at ``datasamples`` directory.
 
 
 ```bash
-$ python SparseCoupledDictionaryTraining.py --inputhigh datasamples/input_hr.csv --inputlow datasamples/input_lr.csv --dictsize 64 --imageN 100 --bands_h 25 --bands_l 9 --n_iter 100 --window 10
+$ python SparseCoupledDL/SparseCoupledDictionaryTraining.py --inputhigh datasamples/input_hr.csv --inputlow datasamples/input_lr.csv --dictsize 64 --imageN 100 --bands_h 25 --bands_l 9 --n_iter 100 --window 10
 ```
 After the termination of the loop the output of the algorithm is stored in variables `dict_h`, `dict_l` (dictionaries in high and low resolution) and `err_h`, `err_l` (RMSE in high and low resolution).
 

@@ -19,7 +19,7 @@ import numpy as np
 from numpy import genfromtxt
 from math import sqrt
 
-#import scipy.io as sio
+import scipy.io as sio
 from numpy.linalg import inv
 from args import get_opts
 
@@ -41,9 +41,9 @@ def normD(dictin):
     tmp = 1 / np.sqrt(np.sum(np.multiply(dictin, dictin), axis=0))
     
     return np.dot(dictin, np.diag(tmp))
-    
+      
          
-def run_script():
+def run_script(opts):
 
     #the size of the image
     imageN =  opts.imageN 
@@ -106,7 +106,7 @@ def run_script():
     
     for k in range(train_iter):
         
-        print(k)
+        #print(k)
         ttime3 = time.time()
         ##prepare the updated values of dictionaries for updating Wh, Wl, P, Q, Y1,Y2, Y3
         dict_ht = np.transpose(dict_h)
@@ -122,7 +122,7 @@ def run_script():
         
         
         
-        print('update...')
+        #print('update...')
         #update all auxiliary matrices Wh, Wl, P, Q, Y1, Y2, Y3
         cdl = updateCDL(cdl, dict_ht, dict_lt, dtdhinv, dtdlinv,c1,c2,c3, maxbeta, beta, lamda)    
         
@@ -145,41 +145,31 @@ def run_script():
         dict_l = normD(dict_l_upd)
      
         
-        if ~((k +1) % wind):
-            
-            
-        
-            
+        if ((k +1) % wind ==0):
+                    
             err_h = sqrt(np.sum(np.sum(np.square(cdl.datain_h - np.dot(dict_h, cdl.wh)))) / (bands_h_N * imageN)) 
-            err_l = sqrt(np.sum(np.sum(np.square(cdl.datain_l - np.dot(dict_l, cdl.wl)))) / (bands_l_N * imageN))
-    
+            err_l = sqrt(np.sum(np.sum(np.square(cdl.datain_l - np.dot(dict_l, cdl.wl)))) / (bands_l_N * imageN))    
             
-            
-            print('ERROR HIGH:')
-            print(err_h)
-            
-            print('ERROR LOW:')
-            print(err_l)
+            print('ERROR HIGH:',err_h,'ERROR LOW:',err_l)  
         
-        
-        
-        print('Time elapsed for this iteration: ')
-        ttime3 = time.time()-ttime3
-        print(ttime3)
+            print('Time elapsed for this cost iteration {0}: '.format(k))
+            ttime3 = time.time()-ttime3
+            print(ttime3)
         #print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
             
-        #mat2save =  './results' + str(imageN) + 'x' + str(dictsize) + '_' + str(k) +'standalone.mat'  
-        
+        #mat2save =  './results' + str(imageN) + 'x' + str(dictsize) + '_' + str(k) +'standalone.mat'      
         #sio.savemat(mat2save, {'timeelapsed': ttime3, 'dicth':dict_h, 'dictl': dict_l, 'phi_h': phi_h, 'phi_l': phi_l, 'err_l':err_l, 'err_h': err_h})#, 'wh': wh, 'wl': wl})#'phih': phi_h, 'sw': sw})
-      
+    mat2save =  './results' + str(imageN) + 'x' + str(dictsize) + '_' + str(k) +'standalone.mat'      
+    output_struc={'savename':mat2save,'timeelapsed': ttime3, 'dicth':dict_h, 'dictl': dict_l, 'phi_h': phi_h, 'phi_l': phi_l, 'err_l':err_l, 'err_h': err_h, 'wh': cdl.wh, 'wl': cdl.wl,'cdl': cdl}
+    return output_struc
       
 def main(args=None):
 
     
-    global opts
+    #global opts
     opts = get_opts(args)
-    run_script()
-    
+    dico=run_script(opts)
+    sio.savemat(dico["savename"],dico)
 
 if __name__ == "__main__":
     main()
