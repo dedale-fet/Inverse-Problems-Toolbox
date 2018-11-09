@@ -19,7 +19,7 @@ import numpy as np
 from numpy import genfromtxt
 from math import sqrt
 
-#import scipy.io as sio
+import scipy.io as sio
 from numpy.linalg import inv
 from args import get_opts
 
@@ -168,9 +168,9 @@ def run_script():
         print(ttime3)
         #print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
             
-        #mat2save =  './results' + str(imageN) + 'x' + str(dictsize) + '_' + str(k) +'standalone.mat'  
+        mat2save =  './results' + str(imageN) + 'x' + str(dictsize) + '_' + str(k) +'standalone.mat'  
         
-        #sio.savemat(mat2save, {'timeelapsed': ttime3, 'dicth':dict_h, 'dictl': dict_l, 'phi_h': phi_h, 'phi_l': phi_l, 'err_l':err_l, 'err_h': err_h})#, 'wh': wh, 'wl': wl})#'phih': phi_h, 'sw': sw})
+        sio.savemat(mat2save, {'timeelapsed': ttime3, 'dicth':dict_h, 'dictl': dict_l, 'phi_h': phi_h, 'phi_l': phi_l, 'err_l':err_l, 'err_h': err_h})#, 'wh': wh, 'wl': wl})#'phih': phi_h, 'sw': sw})
       
       
 def main(args=None):

@@ -13,8 +13,8 @@ def Backward(X):
 
     lh = 5
     nX = np.shape(X)
-    x = st2.Starlet2D(nX[1],nX[2],nX[0]-1,nX[3]-1,lh).backward2d_omp(X)
-
+#    x = st2.Starlet2D(nX[1],nX[2],nX[0]-1,nX[3]-1,lh).backward2d_omp(X)
+    x = st2.Starlet2D(nX[1] ,nX[2],nX[0],nX[3]-1,lh).backward2d_omp(X)
     return x
 
 def Filter(X,J=2,th=0,L0=0):
