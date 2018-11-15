@@ -6,7 +6,7 @@ This toolbox contains two packages that were designed in the context of workpack
 
 - RestoreManifold is a package authored by Jérome Bobin (CEA), that allows to solve some restoration problems (denoising, inpainting) for manifold-valued data.
 
-Two python notebooks illustrate how to use these  packages. See the documentation in each package for more details
+Three python notebooks illustrate how to use these  packages. See the documentation in each package for more details
 
 
 ***
@@ -36,4 +36,4 @@ cmake ../ -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 
 At the end of the compilation, all python libraries will be installed in directory
-`install/lib/python2.7/site-packages`
+`${ROOT_DEDALE_TOOLBOX}/install/lib/python2.7/site-packages`
